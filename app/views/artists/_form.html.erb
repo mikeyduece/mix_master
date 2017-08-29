@@ -1,0 +1,24 @@
+<%= form_for(@artist) do |f| %>
+  <ul>
+  <% @artist.errors.full_messages.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+    <% end %>
+  </ul>
+  
+  <p>
+    <%= f.label :name, 'Name' %>
+    <%= f.text_field :name %> 
+  </p>
+  
+  <p>
+    <%= f.label :image, 'Image' %>
+    <%= f.text_field :image %>
+  </p>
+  
+  <p>
+    <%= f.submit 'Submit'%>
+  </p>
+  <% end %>
+    
