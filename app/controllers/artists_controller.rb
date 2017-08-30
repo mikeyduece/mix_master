@@ -6,10 +6,13 @@ class ArtistsController < ApplicationController
   
   def show
     @artist = Artist.find(params[:id])
+    @song   = Song.new
+    @song.artist_id = @artist.id
   end
   
   def new
     @artist = Artist.new
+    @song   = Song.new
   end
   
   def create
@@ -27,8 +30,11 @@ class ArtistsController < ApplicationController
   
   def update
     @artist = Artist.find(params[:id])
-    @artist.update(artist_params)
-    redirect_to artist_path(@artist)
+    if @artist.update(artist_params)
+      redirect_to artist_path(@artist)
+    else
+      render :edit
+    end
   end
   
   def destroy
@@ -40,6 +46,6 @@ class ArtistsController < ApplicationController
   private
   
   def artist_params
-    params.require(:artist).permit(:name, :image)
+    params.require(:artist).permit(:name, :image, :songs)
   end
 end

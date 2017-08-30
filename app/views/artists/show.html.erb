@@ -2,5 +2,9 @@
 
 <img src="<%= @artist.image %>" />
 
+<h3>Songs(<%= @artist.songs.size %>)</h3>
+<%= render partial: 'artists/song', collection: @artist.songs %>
+<%= render partial: 'songs/form' %>
+
 <%= link_to 'Edit', edit_artist_path(@artist) %><br />
 <%= link_to 'Delete', artist_path(@artist), method: :delete %>

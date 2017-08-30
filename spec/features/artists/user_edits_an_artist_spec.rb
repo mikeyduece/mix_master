@@ -4,8 +4,8 @@ RSpec.feature "As a user I can" do
   scenario "edit an aritsts info" do
     artist = Artist.create(name: 'Queen', image: "http://cps-static.rovicorp.com/3/JPG_250/MI0003/201/MI0003201089.jpg?partner=allrovi.com")
     visit "/artists/#{artist.id}"
-    click_on('Edit')
     artist_image_path = 'http://i.imgur.com/wGBi2Sq.gif'
+    click_on('Edit')
     expect(current_path).to eq(edit_artist_path(artist))
     
     fill_in('Name', with: 'Rick Astley')
