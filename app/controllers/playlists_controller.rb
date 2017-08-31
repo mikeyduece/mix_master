@@ -6,16 +6,20 @@ class PlaylistsController < ApplicationController
   
   def show
     @playlist = Playlist.find(params[:id])
-    @songs    = Song.all
   end
   
   def new
     @playlist = Playlist.new
+    @songs    = Song.all
   end
   
   def create
     @playlist = Playlist.create(playlist_params)
-    redirect_to palylist_path(@playlist)
+    redirect_to @playlist
+  end
+  
+  def show
+    @playlist = Playlist.find(params[:id])
   end
   
   private

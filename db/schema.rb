@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170831130928) do
+ActiveRecord::Schema.define(version: 20170831142211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 20170831130928) do
     t.string "image"
   end
 
-  create_table "p_laylists", force: :cascade do |t|
+  create_table "playlist_songs", force: :cascade do |t|
     t.bigint "song_id"
-    t.bigint "artist_id"
+    t.bigint "playlist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_p_laylists_on_artist_id"
-    t.index ["song_id"], name: "index_p_laylists_on_song_id"
+    t.index ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
+    t.index ["song_id"], name: "index_playlist_songs_on_song_id"
   end
 
   create_table "playlists", force: :cascade do |t|
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170831130928) do
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
-  add_foreign_key "p_laylists", "artists"
-  add_foreign_key "p_laylists", "songs"
+  add_foreign_key "playlist_songs", "playlists"
+  add_foreign_key "playlist_songs", "songs"
   add_foreign_key "playlists", "songs"
   add_foreign_key "songs", "artists"
 end
